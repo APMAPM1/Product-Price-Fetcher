@@ -32,7 +32,7 @@ async def scrape_amazon_us(query: str) -> List[Product]:
 
 async def scrape_amazon(search_url: str, currency: str) -> List[Product]:
     products = []
-    async with httpx.AsyncClient(timeout=30) as client:
+    async with httpx.AsyncClient(timeout=15) as client:
         try:
             response = await client.get(search_url, headers=HEADERS)
             log_message("info", f"Fetched {search_url} with status code {response.status_code}")
@@ -58,10 +58,17 @@ async def scrape_amazon(search_url: str, currency: str) -> List[Product]:
 
         for item in items[:5]:
             try:
-                title_elem = item.select_one('h2 a span')
+                print("----- RAW ITEM HTML -----")
+                print(item.prettify())
+
+                # Title
+                title_elem = item.select_one('h2.a-size-medium.a-spacing-none.a-color-base.a-text-normal span')
+
+                # Link
+                link_elem = item.select_one('a.a-link-normal.a-text-normal')
+                        
                 price_whole = item.select_one('span.a-price-whole')
                 price_fraction = item.select_one('span.a-price-fraction')
-                link_elem = item.select_one('h2 a')
 
                 if not title_elem:
                     log_message("warning", "Missing product title.")

@@ -5,7 +5,7 @@ from app.utils import log_message
 
 genai.configure(api_key=GEMINI_API_KEY)
 
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 async def filter_matching_products(products, query):
     matched_products = []
