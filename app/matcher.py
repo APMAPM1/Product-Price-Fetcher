@@ -1,7 +1,7 @@
 import google.generativeai as genai
 from app.schemas import Product
 from app.config import GEMINI_API_KEY
-from app.utils import log_message
+from app.logger import log_message
 
 genai.configure(api_key=GEMINI_API_KEY)
 

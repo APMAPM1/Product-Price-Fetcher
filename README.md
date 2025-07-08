@@ -14,13 +14,13 @@ This app scrapes product listings from Amazon India/US and uses **Gemini LLM** t
 
 ```plaintext
 ├── app/
-│   ├── api.py                     
-│   ├── config.py                  
-│   ├── main.py                  
-│   ├── matcher.py                  
-│   ├── schemas.py            
+│   ├── api.py
+│   ├── config.py
+│   ├── main.py
+│   ├── matcher.py
+│   ├── schemas.py
 │   ├── scraper.py
-│   └── utils.py   
+│   └── logger.py
 │
 ├── .gitignore
 │
@@ -44,8 +44,8 @@ This app scrapes product listings from Amazon India/US and uses **Gemini LLM** t
    git clone https://github.com/APMAPM1/Product-Price-Fetcher.git
    cd Product-Price-Fetcher
    ```
-   
 2. **Create a Virtual Environment (Recommended):**
+
    ```bash
    python -m venv venv
    # On Windows:
@@ -55,11 +55,13 @@ This app scrapes product listings from Amazon India/US and uses **Gemini LLM** t
    ```
 
 3. **Install Dependencies:**
+
    ```bash
    pip install -r requirements.txt
    ```
 
 4. **Set Your API Key:**
+
    ```bash
    GEMINI_API_KEY=your_google_gemini_api_key_here
    ```
@@ -72,28 +74,31 @@ This app scrapes product listings from Amazon India/US and uses **Gemini LLM** t
 ## 📡 Example API Usage
 
 ### Endpoint:
-   ```bash
-   POST /search
-   ```
+
+```bash
+POST /search
+```
 
 ### Example cURL Request:
-   ```bash
-   curl -X POST http://127.0.0.1:8000/search \
-  -H "Content-Type: application/json" \
-  -d '{"country": "IN", "query": "boAt Airdopes 311 Pro"}'
-   ```
+
+```bash
+curl -X POST http://127.0.0.1:8000/search \
+-H "Content-Type: application/json" \
+-d '{"country": "IN", "query": "boAt Airdopes 311 Pro"}'
+```
 
 ### Example Response:
-   ```bash
-   [
-      {
-        "productName": "boAt Airdopes 311 Pro, 50HRS Battery, Fast Charge, ...",
-        "price": 999.0,
-        "currency": "INR",
-        "link": "https://www.amazon.in/dp/B0C8ZTPM29"
-      }
-   ]
-   ```
+
+```bash
+[
+   {
+     "productName": "boAt Airdopes 311 Pro, 50HRS Battery, Fast Charge, ...",
+     "price": 999.0,
+     "currency": "INR",
+     "link": "https://www.amazon.in/dp/B0C8ZTPM29"
+   }
+]
+```
 
 ## 🧠 Notes
 
